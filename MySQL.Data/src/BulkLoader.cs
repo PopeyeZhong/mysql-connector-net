@@ -270,7 +270,7 @@ namespace MySql.Data.MySqlClient
       else if (ConflictOption == MySqlBulkLoaderConflictOption.Replace)
         sql.Append("REPLACE ");
 
-      sql.AppendFormat("INTO TABLE {0} ", TableName);
+      sql.AppendFormat("INTO TABLE `{0}` ", TableName);
 
       if (CharacterSet != null)
         sql.AppendFormat("CHARACTER SET {0} ", CharacterSet);
@@ -301,9 +301,9 @@ namespace MySql.Data.MySqlClient
       if (Columns.Count > 0)
       {
         sql.Append("(");
-        sql.Append(Columns[0]);
+        sql.Append('`' + Columns[0] + '`');
         for (int i = 1; i < Columns.Count; i++)
-          sql.AppendFormat(",{0}", Columns[i]);
+          sql.AppendFormat(",`{0}`", Columns[i]);
         sql.Append(") ");
       }
 
